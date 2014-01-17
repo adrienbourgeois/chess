@@ -17,16 +17,16 @@ describe 'king' do
   end
 
   describe "authorized_squares" do
+    let(:authorized_squares) { king.authorized_squares }
     it "should return only authorized squares" do
-      #king.authorized_squares.should include(board.squares[3][4])
-      king.authorized_squares.should include(board.squares[3][2])
-      king.authorized_squares.should include(board.squares[4][2])
-      king.authorized_squares.should include(board.squares[4][3])
-      king.authorized_squares.should include(board.squares[4][4])
-      king.authorized_squares.should include(board.squares[2][2])
-      king.authorized_squares.should include(board.squares[2][3])
-      king.authorized_squares.should include(board.squares[2][4])
-      king.authorized_squares.count.should == 7
+      authorized_squares.should include(board.squares[3][2])
+      authorized_squares.should include(board.squares[4][2])
+      authorized_squares.should include(board.squares[4][3])
+      authorized_squares.should include(board.squares[4][4])
+      authorized_squares.should include(board.squares[2][2])
+      authorized_squares.should include(board.squares[2][3])
+      authorized_squares.should include(board.squares[2][4])
+      authorized_squares.count.should == 7
     end
   end
 

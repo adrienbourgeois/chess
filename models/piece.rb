@@ -15,6 +15,9 @@ class Piece
       self.square.piece = nil
       self.square = square_target
       square_target.piece = self
+      return true
+    else
+      return false
     end
   end
 

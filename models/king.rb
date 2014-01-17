@@ -16,7 +16,7 @@ class King < Piece
     (x_min..x_max).each do |cur_x|
       (y_min..y_max).each do |cur_y|
         square_candidate = board.squares[cur_x][cur_y]
-        if (cur_x != x or cur_y != y) and !square_candidate.occuped?
+        if (cur_x != x or cur_y != y) and square_candidate.occuped? != @color
           authorized_squares_array += [board.squares[cur_x][cur_y]]
         end
       end

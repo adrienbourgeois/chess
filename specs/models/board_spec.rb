@@ -22,7 +22,7 @@ describe 'board' do
     it "should add the piece to the right list" do
       king = King.new 'white'
       board.add_piece(king, Coord.new(3,3))
-      board.white_pieces.should include king
+      board.pieces['white'].should include king
     end
   end
 

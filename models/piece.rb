@@ -4,6 +4,7 @@ class Piece
 
 
   def initialize color
+    raise ArgumentError, 'color should be black or white' unless ['black','white'].include? color
     @color = color
     @alive = true
   end

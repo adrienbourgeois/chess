@@ -81,6 +81,22 @@ class Board
     end
   end
 
+  def stalemate?
+    if !checkmate?
+      square_poss = []
+      @pieces[@next_player].each do |piece|
+        square_poss += piece.authorized_squares
+      end
+      if square_poss.count == 0
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
   def self.in_board? x,y
     return true if x >= 0 and y >= 0 and x <= 7 and y <= 7
     return false

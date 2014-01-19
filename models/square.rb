@@ -15,4 +15,9 @@ class Square
     end
   end
 
+  def add_piece piece
+    @piece = piece
+    piece.square = self
+  end
+
 end

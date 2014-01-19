@@ -21,4 +21,13 @@ describe 'square' do
     end
   end
 
+  describe "add_piece" do
+    let(:piece) { Piece.new 'white' }
+    it "should link the square to the piece" do
+      square.add_piece piece
+      square.piece.should == piece
+      piece.square.should == square
+    end
+  end
+
 end

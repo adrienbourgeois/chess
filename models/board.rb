@@ -8,9 +8,11 @@ require_relative 'king.rb'
 
 class Board
 
-  attr_accessor :squares, :white_pieces, :black_pieces
+  attr_accessor :squares, :white_pieces, :black_pieces, :next_player
 
   def initialize(initialize_game = false)
+    @white_pieces, @black_pieces = [], []
+    @next_player = 'white'
     @squares = {}
     (0..7).each do |x|
       @squares[x] = {}
@@ -19,7 +21,6 @@ class Board
         @squares[x][y] =  Square.new coord, self
       end
     end
-    @white_pieces, @black_pieces = [], []
 
     if initialize_game
       add_piece(Rook.new('white'), Coord.new(0,0))
@@ -48,6 +49,14 @@ class Board
       @black_pieces += [piece]
     end
     @squares[coord.x][coord.y].add_piece piece
+  end
+
+  def change_next_player
+    if @next_player == 'white'
+      @next_player = 'black'
+    else
+      @next_player = 'white'
+    end
   end
 
   def self.in_board? x,y

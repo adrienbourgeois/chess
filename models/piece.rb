@@ -16,6 +16,7 @@ class Piece
       self.square.piece = nil
       self.square = square_target
       square_target.piece = self
+      board.change_next_player
       return true
     else
       return false

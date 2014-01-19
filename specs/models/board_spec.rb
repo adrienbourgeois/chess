@@ -26,4 +26,14 @@ describe 'board' do
     end
   end
 
+  describe "next_player" do
+    it "should change the next_player after a move" do
+      king = King.new 'white'
+      board.add_piece(king, Coord.new(3,3))
+      next_player_before = board.next_player
+      king.move_to Coord.new(4,4)
+      board.next_player.should_not == next_player_before
+    end
+  end
+
 end

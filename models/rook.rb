@@ -3,7 +3,7 @@ require 'pry'
 
 class Rook < Piece
 
-  def authorized_squares
+  def authorized_squares(king_check = false)
     matrixes = [
       [1,0],
       [0,1],

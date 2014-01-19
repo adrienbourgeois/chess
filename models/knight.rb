@@ -1,8 +1,8 @@
-require_relative 'piece.rb'
+#require_relative 'piece.rb'
 
 class Knight < Piece
 
-  def authorized_squares
+  def authorized_squares(king_check = false)
     x = @square.coord.x
     y = @square.coord.y
     board = @square.board

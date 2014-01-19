@@ -2,7 +2,7 @@ require_relative 'piece.rb'
 
 class Queen < Piece
 
-  def authorized_squares
+  def authorized_squares(king_check = false)
     matrixes = [
       [1,-1],
       [1,0],

@@ -22,7 +22,9 @@ class Square
 
   def in_check?
     squares_checked = []
-    board.pieces[board.previous_player].each { |piece| squares_checked += piece.authorized_squares }
+    @board.pieces[@board.previous_player].each do |piece|
+      squares_checked += piece.authorized_squares(true)
+    end
     return squares_checked.include? self
   end
 

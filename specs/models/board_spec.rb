@@ -2,7 +2,7 @@ require_relative '../../models/board.rb'
 
 describe 'board' do
 
-  subject(:board) { Board.new }
+  subject(:board) { Board.new true }
 
   it { should respond_to(:squares) }
 
@@ -12,6 +12,7 @@ describe 'board' do
   end
 
   xit "should initialize a game" do
+
   end
 
 end

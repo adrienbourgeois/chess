@@ -71,11 +71,8 @@ class Board
   end
 
   def self.in_board? x,y
-    if x >= 0 and y >= 0 and x <= 7 and y <= 7
-      true
-    else
-      false
-    end
+    return true if x >= 0 and y >= 0 and x <= 7 and y <= 7
+    return false
   end
 
   def print_schema

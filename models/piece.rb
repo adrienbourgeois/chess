@@ -22,4 +22,12 @@ class Piece
     end
   end
 
+  def x
+    @square.coord.x
+  end
+
+  def y
+    @square.coord.y
+  end
+
 end

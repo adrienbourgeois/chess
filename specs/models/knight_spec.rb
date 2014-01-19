@@ -27,18 +27,18 @@ describe 'knight' do
   describe "move_to" do
     it "should move the knight if the movement is legal" do
       knight.move_to Coord.new 5,6
-      knight.square.coord.x.should == 5
-      knight.square.coord.y.should == 6
+      knight.x.should == 5
+      knight.y.should == 6
     end
     it "should not move the knight if the movement is not legal" do
       knight.move_to Coord.new 4,7
-      knight.square.coord.x.should == 4
-      knight.square.coord.y.should == 4
+      knight.x.should == 4
+      knight.y.should == 4
     end
     it "should not move the knight if there is another piece of the same color" do
       knight.move_to Coord.new 3,6
-      knight.square.coord.x.should == 4
-      knight.square.coord.y.should == 4
+      knight.x.should == 4
+      knight.y.should == 4
     end
   end
 end

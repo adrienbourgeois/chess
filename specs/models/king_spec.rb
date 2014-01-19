@@ -8,12 +8,9 @@ describe 'king' do
   let(:king3) { King.new 'white' }
   let(:board) { Board.new }
   before(:each) do
-    board.squares[3][3].piece = king
-    board.squares[3][4].piece = king2
-    board.squares[4][4].piece = king3
-    king.square = board.squares[3][3]
-    king2.square = board.squares[3][4]
-    king3.square = board.squares[4][4]
+    board.squares[3][3].add_piece king
+    board.squares[3][4].add_piece king2
+    board.squares[4][4].add_piece king3
   end
 
   describe "authorized_squares" do
@@ -33,18 +30,18 @@ describe 'king' do
   describe "move_to" do
     it "should move the king if the movement is legal" do
       king.move_to Coord.new 2,3
-      king.square.coord.x.should == 2
-      king.square.coord.y.should == 3
+      king.x.should == 2
+      king.y.should == 3
     end
     it "should not move the king if the movement is not legal" do
       king.move_to Coord.new 4,7
-      king.square.coord.x.should == 3
-      king.square.coord.y.should == 3
+      king.x.should == 3
+      king.y.should == 3
     end
     it "should not move the king if there is another piece of the same color" do
       king.move_to Coord.new 3,4
-      king.square.coord.x.should == 3
-      king.square.coord.y.should == 3
+      king.x.should == 3
+      king.y.should == 3
     end
   end
 

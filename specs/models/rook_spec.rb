@@ -7,10 +7,8 @@ describe 'rook' do
   let(:rook2) { Rook.new 'black' }
   let(:board) { Board.new }
   before(:each) do
-    board.squares[3][3].piece = rook
-    board.squares[3][5].piece = rook2
-    rook.square = board.squares[3][3]
-    rook2.square = board.squares[3][5]
+    board.squares[3][3].add_piece rook
+    board.squares[3][5].add_piece rook2
   end
 
   describe "authorized_squares" do
@@ -34,18 +32,18 @@ describe 'rook' do
   describe "move_to" do
     it "should move the rook if the movement is legal" do
       rook.move_to Coord.new 7,3
-      rook.square.coord.x.should == 7
-      rook.square.coord.y.should == 3
+      rook.x.should == 7
+      rook.y.should == 3
     end
     it "should not move the rook if the movement is not legal" do
       rook.move_to Coord.new 7,4
-      rook.square.coord.x.should == 3
-      rook.square.coord.y.should == 3
+      rook.x.should == 3
+      rook.y.should == 3
     end
     it "should not move the rook if there is another piece of the same color" do
       rook.move_to Coord.new 3,5
-      rook.square.coord.x.should == 3
-      rook.square.coord.y.should == 3
+      rook.x.should == 3
+      rook.y.should == 3
     end
   end
 end

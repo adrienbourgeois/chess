@@ -20,7 +20,7 @@ class Knight < Piece
     ].each do |candidate_coord|
       cur_x = candidate_coord[:x]
       cur_y = candidate_coord[:y]
-      if cur_x < 8 and cur_y < 8 and cur_x > 0 and cur_y > 0
+      if Board.in_board? cur_x, cur_y
         square_candidate = board.squares[cur_x][cur_y]
         if square_candidate.occuped? != @color
           authorized_squares_array += [board.squares[cur_x][cur_y]]

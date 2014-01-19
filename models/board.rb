@@ -68,7 +68,17 @@ class Board
   end
 
   def checkmate?
-
+    if king_in_check?
+      square_poss = @kings[@next_player].authorized_squares
+      puts square_poss.count
+      if square_poss.count == 0
+        true
+      else
+        false
+      end
+    else
+      false
+    end
   end
 
   def self.in_board? x,y

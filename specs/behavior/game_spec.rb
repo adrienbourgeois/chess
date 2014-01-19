@@ -18,4 +18,39 @@ describe 'game' do
     end
   end
 
+  describe 'checkmate?' do
+    let(:board2) { Board.new }
+    let(:king) { King.new 'white' }
+    let(:queen) { Queen.new 'black' }
+    let(:rook) { Rook.new 'black' }
+
+    it "should return true when the current player is checkmate" do
+      board2.add_piece(king,Coord.new(4,0))
+      board2.add_piece(queen,Coord.new(4,1))
+      board2.add_piece(rook,Coord.new(4,7))
+      board2.print_schema
+      board2.checkmate?.should == true
+    end
+    it "should not return true when the current player is just in check" do
+      board2.add_piece(king,Coord.new(4,0))
+      board2.add_piece(queen,Coord.new(4,1))
+      board2.print_schema
+      board2.checkmate?.should == false
+    end
+    it "should not return true when the current is not in check" do
+      board2.add_piece(king,Coord.new(4,0))
+      board2.add_piece(queen,Coord.new(7,1))
+      board2.add_piece(rook,Coord.new(3,7))
+      board2.print_schema
+      board2.checkmate?.should == false
+    end
+    it "should not return true when the king cannot move but is not in check" do
+      board2.add_piece(king,Coord.new(4,0))
+      board2.add_piece(queen,Coord.new(6,1))
+      board2.add_piece(rook,Coord.new(3,7))
+      board2.print_schema
+      board2.checkmate?.should == false
+    end
+  end
+
 end

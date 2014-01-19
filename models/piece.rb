@@ -37,7 +37,7 @@ class Piece
 
   #I made this method to stay DRY. Indeed, the authorized_squares method
   #is very similar for King, Queen, Bishop and Rook.
-  def authorized_squares_generic matrixes, distance_max
+  def authorized_squares_generic matrixes, distance_max, checkmate_check
     authorized_squares_array = []
     matrixes.each do |matrix|
       (1..distance_max).each do |i|
@@ -46,7 +46,7 @@ class Piece
         if Board.in_board? cur_x, cur_y
           square_candidate = board.squares[cur_x][cur_y]
           if (occuped = square_candidate.occuped?)
-            if occuped == @color
+            if occuped == @color and !checkmate_check
               break
             else
               authorized_squares_array += [square_candidate]

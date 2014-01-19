@@ -2,7 +2,7 @@
 
 class Knight < Piece
 
-  def authorized_squares(king_check = false)
+  def authorized_squares(checkmate_check = false, king_check = false)
     x = @square.coord.x
     y = @square.coord.y
     board = @square.board
@@ -22,7 +22,7 @@ class Knight < Piece
       cur_y = candidate_coord[:y]
       if Board.in_board? cur_x, cur_y
         square_candidate = board.squares[cur_x][cur_y]
-        if square_candidate.occuped? != @color
+        if square_candidate.occuped? != @color or checkmate_check
           authorized_squares_array += [board.squares[cur_x][cur_y]]
         end
       end

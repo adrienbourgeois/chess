@@ -20,10 +20,10 @@ class Square
     piece.square = self
   end
 
-  def in_check?
+  def in_check? checkmate_check = true
     squares_checked = []
     @board.pieces[@board.previous_player].each do |piece|
-      squares_checked += piece.authorized_squares(true)
+      squares_checked += piece.authorized_squares(checkmate_check,true)
     end
     return squares_checked.include? self
   end

@@ -20,4 +20,10 @@ class Square
     piece.square = self
   end
 
+  def in_check?
+    squares_checked = []
+    board.pieces[board.previous_player].each { |piece| squares_checked += piece.authorized_squares }
+    return squares_checked.include? self
+  end
+
 end

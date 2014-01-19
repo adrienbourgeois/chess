@@ -1,6 +1,7 @@
 require_relative '../../models/square.rb'
 require_relative '../../models/coord.rb'
 require_relative '../../models/piece.rb'
+require_relative '../../models/board.rb'
 
 describe 'square' do
 
@@ -27,6 +28,17 @@ describe 'square' do
       square.add_piece piece
       square.piece.should == piece
       piece.square.should == square
+    end
+  end
+
+  describe "in_check?" do
+    it "should return true if the adversary can get there at the next round" do
+      board = Board.new true
+      board.squares[7][5].in_check?.should == true
+    end
+    it "should return false if the adversary can't get there at the next round" do
+      board = Board.new true
+      board.squares[4][3].in_check?.should == false
     end
   end
 

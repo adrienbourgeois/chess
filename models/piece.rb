@@ -30,4 +30,8 @@ class Piece
     @square.coord.y
   end
 
+  def board
+    @square.board
+  end
+
 end

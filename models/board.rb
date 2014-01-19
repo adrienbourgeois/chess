@@ -8,7 +8,7 @@ require_relative 'king.rb'
 
 class Board
 
-  attr_accessor :squares
+  attr_accessor :squares, :white_pieces, :black_pieces
 
   def initialize(initialize_game = false)
     @squares = {}
@@ -19,26 +19,35 @@ class Board
         @squares[x][y] =  Square.new coord, self
       end
     end
+    @white_pieces, @black_pieces = [], []
 
     if initialize_game
-      @squares[0][0].add_piece(Rook.new 'white')
-      @squares[1][0].add_piece(Knight.new 'white')
-      @squares[2][0].add_piece(Bishop.new 'white')
-      @squares[3][0].add_piece(Queen.new 'white')
-      @squares[4][0].add_piece(King.new 'white')
-      @squares[5][0].add_piece(Bishop.new 'white')
-      @squares[6][0].add_piece(Knight.new 'white')
-      @squares[7][0].add_piece(Rook.new 'white')
-      @squares[0][7].add_piece(Rook.new 'black')
-      @squares[1][7].add_piece(Knight.new 'black')
-      @squares[2][7].add_piece(Bishop.new 'black')
-      @squares[3][7].add_piece(Queen.new 'black')
-      @squares[4][7].add_piece(King.new 'black')
-      @squares[5][7].add_piece(Bishop.new 'black')
-      @squares[6][7].add_piece(Knight.new 'black')
-      @squares[7][7].add_piece(Rook.new 'black')
-      print_schema
+      add_piece(Rook.new('white'), Coord.new(0,0))
+      add_piece(Knight.new('white'), Coord.new(1,0))
+      add_piece(Bishop.new('white'), Coord.new(2,0))
+      add_piece(Queen.new('white'), Coord.new(3,0))
+      add_piece(King.new('white'), Coord.new(4,0))
+      add_piece(Bishop.new('white'), Coord.new(5,0))
+      add_piece(Knight.new('white'), Coord.new(6,0))
+      add_piece(Rook.new('white'), Coord.new(7,0))
+      add_piece(Rook.new('black'), Coord.new(0,7))
+      add_piece(Knight.new('black'), Coord.new(1,7))
+      add_piece(Bishop.new('black'), Coord.new(2,7))
+      add_piece(Queen.new('black'), Coord.new(3,7))
+      add_piece(King.new('black'), Coord.new(4,7))
+      add_piece(Bishop.new('black'), Coord.new(5,7))
+      add_piece(Knight.new('black'), Coord.new(6,7))
+      add_piece(Rook.new('black'), Coord.new(7,7))
     end
+  end
+
+  def add_piece piece, coord
+    if piece.color == 'white'
+      @white_pieces += [piece]
+    else
+      @black_pieces += [piece]
+    end
+    @squares[coord.x][coord.y].add_piece piece
   end
 
   def self.in_board? x,y

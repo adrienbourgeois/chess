@@ -1,4 +1,6 @@
 require_relative '../../models/board.rb'
+require_relative '../../models/king.rb'
+require_relative '../../models/coord.rb'
 
 describe 'board' do
 
@@ -11,8 +13,17 @@ describe 'board' do
     board.squares[0].count.should == 8
   end
 
-  xit "should initialize a game" do
+  it "should initialize a game" do
+    board.print_schema
 
+  end
+
+  describe "add_piece" do
+    it "should add the piece to the right list" do
+      king = King.new 'white'
+      board.add_piece(king, Coord.new(3,3))
+      board.white_pieces.should include king
+    end
   end
 
 end

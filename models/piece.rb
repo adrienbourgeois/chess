@@ -9,6 +9,18 @@ class Piece
     @alive = true
   end
 
+  def x
+    @square.coord.x
+  end
+
+  def y
+    @square.coord.y
+  end
+
+  def board
+    @square.board
+  end
+
   def move_to coord
     return false if board.next_player != color
     square_target = board.squares[coord.x][coord.y]
@@ -27,18 +39,6 @@ class Piece
     else
       return false
     end
-  end
-
-  def x
-    @square.coord.x
-  end
-
-  def y
-    @square.coord.y
-  end
-
-  def board
-    @square.board
   end
 
   #I made this method to stay DRY. Indeed, the authorized_squares method

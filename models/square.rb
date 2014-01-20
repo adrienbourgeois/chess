@@ -8,11 +8,8 @@ class Square
   end
 
   def occuped?
-    if piece != nil
-      @piece.color
-    else
-      false
-    end
+    return @piece.color if @piece
+    return false
   end
 
   def add_piece piece

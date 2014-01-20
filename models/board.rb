@@ -103,6 +103,13 @@ class Board
     return false
   end
 
+  def move_to coord1, coord2
+    return false if !(Board.in_board? coord1.x, coord1.y) or !(Board.in_board? coord2.x, coord2.y)
+    piece = @squares[coord1.x][coord1.y].piece
+    return false if piece == nil
+    return piece.move_to coord2
+  end
+
   def print_schema
     puts ""
     (0..7).reverse_each do |y|

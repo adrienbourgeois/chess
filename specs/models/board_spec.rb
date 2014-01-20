@@ -33,4 +33,15 @@ describe 'board' do
     end
   end
 
+  describe "move_to" do
+
+    it "should execute the order if there is a piece on the square and if the movement is legal" do
+      pawn = board.squares[0][1].piece
+      board.move_to(Coord.new(0,1),Coord.new(0,3))
+      pawn.x.should == 0
+      pawn.y.should == 3
+    end
+
+  end
+
 end

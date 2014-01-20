@@ -5,6 +5,13 @@ board = Board.new true
 
 finished = false
 
+puts "
+If you want to move the left white knight from (1,0) to (0,2), just type:
+'1 0 0 2'
+The board is numeroted from 0 to 7 on the x axis and y axis.
+Type 'exit' at any time to quit te program.
+"
+
 while !finished
   if board.checkmate?
     puts "Checkmate !!! #{board.previous_player} win."

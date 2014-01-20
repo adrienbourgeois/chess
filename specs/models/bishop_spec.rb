@@ -1,13 +1,18 @@
 require_relative '../../models/board.rb'
 require_relative '../../models/bishop.rb'
+require_relative '../../models/king.rb'
 
 describe 'bishop' do
-  subject(:bishop) { Bishop.new 'black' }
-  let(:bishop2) { Bishop.new 'black' }
+  subject(:bishop) { Bishop.new 'white' }
+  let(:bishop2) { Bishop.new 'white' }
+  let(:king) { King.new 'black' }
+  let(:king2) { King.new 'white' }
   let(:board) { Board.new }
   before(:each) do
-    board.squares[3][3].add_piece bishop
-    board.squares[5][5].add_piece bishop2
+    board.add_piece bishop, Coord.new(3,3)
+    board.add_piece bishop2, Coord.new(5,5)
+    board.add_piece king, Coord.new(2,7)
+    board.add_piece king2, Coord.new(4,7)
   end
 
   describe "authorized_squares" do

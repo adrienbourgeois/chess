@@ -2,16 +2,20 @@ require_relative '../../models/board.rb'
 require_relative '../../models/queen.rb'
 
 describe 'queen' do
-  subject(:queen) { Queen.new 'black' }
-  let(:queen2) { Queen.new 'black' }
-  let(:queen3) { Queen.new 'white' }
-  let(:queen4) { Queen.new 'white' }
+  subject(:queen) { Queen.new 'white' }
+  let(:queen2) { Queen.new 'white' }
+  let(:queen3) { Queen.new 'black' }
+  let(:queen4) { Queen.new 'black' }
+  let(:king) { King.new 'black' }
+  let(:king2) { King.new 'white' }
   let(:board) { Board.new }
   before(:each) do
-    board.squares[2][2].add_piece queen
-    board.squares[4][4].add_piece queen2
-    board.squares[2][4].add_piece queen3
-    board.squares[4][2].add_piece queen4
+    board.add_piece queen, Coord.new(2,2)
+    board.add_piece queen2, Coord.new(4,4)
+    board.add_piece queen3, Coord.new(2,4)
+    board.add_piece queen4, Coord.new(4,2)
+    board.add_piece king, Coord.new(2,7)
+    board.add_piece king2, Coord.new(4,7)
   end
 
   describe "authorized_squares" do

@@ -3,12 +3,16 @@ require_relative '../../models/rook.rb'
 require 'pry'
 
 describe 'rook' do
-  subject(:rook) { Rook.new 'black' }
-  let(:rook2) { Rook.new 'black' }
+  subject(:rook) { Rook.new 'white' }
+  let(:rook2) { Rook.new 'white' }
   let(:board) { Board.new }
+  let(:king) { King.new 'black' }
+  let(:king2) { King.new 'white' }
   before(:each) do
-    board.squares[3][3].add_piece rook
-    board.squares[3][5].add_piece rook2
+    board.add_piece rook, Coord.new(3,3)
+    board.add_piece rook2, Coord.new(3,5)
+    board.add_piece king, Coord.new(2,7)
+    board.add_piece king2, Coord.new(4,7)
   end
 
   describe "authorized_squares" do

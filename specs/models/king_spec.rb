@@ -44,9 +44,7 @@ describe 'king' do
       king.y.should == 3
     end
     it "should not move the king if the square is in check by the adversary" do
-      board.print_schema
       king.move_to Coord.new 4,3
-      board.print_schema
       king.x.should == 3
       king.y.should == 3
     end

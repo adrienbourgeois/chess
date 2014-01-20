@@ -10,14 +10,19 @@ class Piece
   end
 
   def move_to coord
-    board = self.square.board
     square_target = board.squares[coord.x][coord.y]
     if self.authorized_squares.include? square_target
-      self.square.piece = nil
-      self.square = square_target
-      square_target.piece = self
-      board.change_next_player
-      return true
+      square_origin = @square
+      piece_previous = square_target.piece
+      square_target.add_piece self
+      if board.king_in_check?
+        square_origin.add_piece self
+        square_target.add_piece piece_previous
+        return false
+      else
+        board.change_next_player
+        return true
+      end
     else
       return false
     end
@@ -38,6 +43,7 @@ class Piece
   #I made this method to stay DRY. Indeed, the authorized_squares method
   #is very similar for King, Queen, Bishop and Rook.
   def authorized_squares_generic matrixes, distance_max, checkmate_check
+    return [] if @square == nil
     authorized_squares_array = []
     matrixes.each do |matrix|
       (1..distance_max).each do |i|

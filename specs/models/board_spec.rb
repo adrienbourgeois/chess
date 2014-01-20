@@ -14,7 +14,6 @@ describe 'board' do
   end
 
   it "should initialize a game" do
-    board.print_schema
 
   end
 

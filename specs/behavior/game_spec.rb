@@ -72,7 +72,7 @@ describe 'game' do
       board2.add_piece(king,Coord.new(4,0))
       board2.add_piece(queen,Coord.new(4,7))
       board2.add_piece(queen2,Coord.new(4,1))
-      queen2.move_to(Coord.new(1,1)).should == false
+      queen2.move_to(Coord.new(1,1)).should_not == true
       queen2.x.should == 4
       queen2.y.should == 1
   end

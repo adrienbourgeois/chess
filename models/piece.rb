@@ -21,7 +21,7 @@ class Piece
     if self.authorized_squares.include? square_target
       return self.set_square square_target
     else
-      return false
+      return "This is not a legal movement"
     end
   end
 
@@ -63,7 +63,7 @@ class Piece
     if board.king_in_check?
       square_origin.add_piece self
       square_target.add_piece piece_previous
-      return false
+      return "Your king is in check! You can't do this movement."
     else
       board.change_next_player
       return true

@@ -1,6 +1,6 @@
 class Piece
 
-  attr_accessor :color, :square, :alife
+  attr_accessor :color, :square
 
 
   def initialize color
@@ -19,6 +19,10 @@ class Piece
 
   def board
     @square.board
+  end
+
+  def alive?
+    !(@square == nil)
   end
 
   def move_to coord
@@ -44,7 +48,7 @@ class Piece
   #I made this method to stay DRY. Indeed, the authorized_squares method
   #is very similar for King, Queen, Bishop and Rook.
   def authorized_squares_generic matrixes, distance_max, checkmate_check
-    return [] if @square == nil
+    return [] if !self.alive?
     authorized_squares_array = []
     matrixes.each do |matrix|
       (1..distance_max).each do |i|

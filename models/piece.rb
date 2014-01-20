@@ -13,22 +13,13 @@ class Piece
   def y; @square.coord.y; end
   def board; @square.board; end
   def alive?; !(@square == nil); end
+  def my_turn?; board.next_player == color; end
 
   def move_to coord
-    return false if board.next_player != color
+    return false if !(my_turn?)
     square_target = board.squares[coord.x][coord.y]
     if self.authorized_squares.include? square_target
-      square_origin = @square
-      piece_previous = square_target.piece
-      square_target.add_piece self
-      if board.king_in_check?
-        square_origin.add_piece self
-        square_target.add_piece piece_previous
-        return false
-      else
-        board.change_next_player
-        return true
-      end
+      return self.set_square square_target
     else
       return false
     end
@@ -61,6 +52,22 @@ class Piece
       end
     end
     return authorized_squares_array
+  end
+
+  protected
+
+  def set_square(square_target)
+    square_origin = @square
+    piece_previous = square_target.piece
+    square_target.add_piece self
+    if board.king_in_check?
+      square_origin.add_piece self
+      square_target.add_piece piece_previous
+      return false
+    else
+      board.change_next_player
+      return true
+    end
   end
 
 end

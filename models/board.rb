@@ -56,11 +56,7 @@ class Board
   end
 
   def change_next_player
-    if @next_player == 'white'
-      @next_player = 'black'
-    else
-      @next_player = 'white'
-    end
+    @next_player == 'white' ? @next_player = 'black' : @next_player = 'white'
   end
 
   def previous_player

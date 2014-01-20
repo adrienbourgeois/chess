@@ -9,21 +9,10 @@ class Piece
     @alive = true
   end
 
-  def x
-    @square.coord.x
-  end
-
-  def y
-    @square.coord.y
-  end
-
-  def board
-    @square.board
-  end
-
-  def alive?
-    !(@square == nil)
-  end
+  def x; @square.coord.x; end
+  def y; @square.coord.y; end
+  def board; @square.board; end
+  def alive?; !(@square == nil); end
 
   def move_to coord
     return false if board.next_player != color

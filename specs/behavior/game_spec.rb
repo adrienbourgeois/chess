@@ -11,14 +11,18 @@ describe 'game' do
   let(:queen2) { Queen.new 'white' }
   let(:rook) { Rook.new 'black' }
 
+  it "should not move if it's not the turn of the player" do
+    board.print_schema
+    pawn_black = board.squares[0][6].piece
+    pawn_black.move_to Coord.new(0,4)
+    board.print_schema
+    pawn_black.x.should == 0
+    pawn_black.y.should == 6
+  end
+
   describe 'king_in_check' do
     it "should return false when the king is safe" do
       board.king_in_check?.should == false
-    end
-    it "should return true if the king is in check" do
-      queen_white = board.squares[3][0].piece
-      queen_white.move_to Coord.new(4,1)
-      board.king_in_check?.should == true
     end
   end
 

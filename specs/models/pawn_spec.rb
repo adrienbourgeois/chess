@@ -18,7 +18,6 @@ describe 'pawn' do
   describe "authorized_squares" do
     let(:authorized_squares) { pawn.authorized_squares }
     it "should return only authorized squares" do
-      board.print_schema
       authorized_squares.should include(board.squares[3][2])
       authorized_squares.should include(board.squares[3][3])
       authorized_squares.should include(board.squares[2][2])
@@ -28,9 +27,12 @@ describe 'pawn' do
 
   describe "move_to" do
     it "should move the pawn if the movement is legal" do
-      pawn.move_to Coord.new 2,2
-      pawn.x.should == 2
+      pawn.move_to Coord.new 3,2
+      pawn.x.should == 3
       pawn.y.should == 2
+      pawn2.move_to Coord.new 2,1
+      pawn2.x.should == 2
+      pawn2.y.should == 1
     end
     it "should not move the pawn if the movement is not legal" do
       pawn.move_to Coord.new 4,7

@@ -10,6 +10,7 @@ class Piece
   end
 
   def move_to coord
+    return false if board.next_player != color
     square_target = board.squares[coord.x][coord.y]
     if self.authorized_squares.include? square_target
       square_origin = @square

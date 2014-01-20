@@ -5,6 +5,7 @@ require_relative 'knight.rb'
 require_relative 'bishop.rb'
 require_relative 'queen.rb'
 require_relative 'king.rb'
+require_relative 'pawn.rb'
 require 'pry'
 
 class Board
@@ -41,6 +42,10 @@ class Board
       add_piece(Bishop.new('black'), Coord.new(5,7))
       add_piece(Knight.new('black'), Coord.new(6,7))
       add_piece(Rook.new('black'), Coord.new(7,7))
+      (0..7).each do |i|
+        add_piece(Pawn.new('white'),Coord.new(i,1))
+        add_piece(Pawn.new('black'),Coord.new(i,6))
+      end
     end
   end
 

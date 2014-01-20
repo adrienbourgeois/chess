@@ -22,6 +22,8 @@ class Pawn < Piece
           if matrix[1] == 1*k or (matrix[1] == 2*k and first_move?(y,cur_y))
             authorized_squares += [square_candidate]
           end
+        else
+          break
         end
       end
     end

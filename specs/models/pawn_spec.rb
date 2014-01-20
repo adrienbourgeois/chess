@@ -39,8 +39,14 @@ describe 'pawn' do
       pawn.x.should == 3
       pawn.y.should == 1
     end
-    it "should not move the shop if there is another piece of the same color" do
+    it "should not move the pawn if there is another piece of the same color" do
       pawn.move_to Coord.new 4,2
+      pawn.x.should == 3
+      pawn.y.should == 1
+    end
+    it "should not move the pawn if there is a piece in front" do
+      board.add_piece Pawn.new('black'), Coord.new(3,2)
+      pawn.move_to Coord.new 3,3
       pawn.x.should == 3
       pawn.y.should == 1
     end

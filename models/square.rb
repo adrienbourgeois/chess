@@ -1,6 +1,7 @@
 class Square
 
-  attr_accessor :coord, :piece, :board
+  attr_accessor :piece
+  attr_reader :coord, :board
 
   def initialize coord, board
     @coord = coord

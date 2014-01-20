@@ -10,7 +10,7 @@ require 'pry'
 
 class Board
 
-  attr_accessor :squares, :next_player, :pieces
+  attr_reader :squares, :next_player, :pieces
 
   def initialize(initialize_game = false)
     @pieces = {'black' => [], 'white' => []}

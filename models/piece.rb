@@ -1,7 +1,7 @@
 class Piece
 
-  attr_accessor :color, :square
-
+  attr_reader :color
+  attr_accessor :square
 
   def initialize color
     raise ArgumentError, 'color should be black or white' unless ['black','white'].include? color

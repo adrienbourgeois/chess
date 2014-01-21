@@ -1,7 +1,9 @@
 require_relative 'models/board.rb'
 require_relative 'models/coord.rb'
 
-board = Board.new true
+include Chess
+
+board = Chess::Board.new true
 
 finished = false
 

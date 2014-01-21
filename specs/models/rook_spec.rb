@@ -3,16 +3,16 @@ require_relative '../../models/rook.rb'
 require 'pry'
 
 describe 'rook' do
-  subject(:rook) { Rook.new 'white' }
-  let(:rook2) { Rook.new 'white' }
-  let(:board) { Board.new }
-  let(:king) { King.new 'black' }
-  let(:king2) { King.new 'white' }
+  subject(:rook) { Chess::Rook.new 'white' }
+  let(:rook2) { Chess::Rook.new 'white' }
+  let(:board) { Chess::Board.new }
+  let(:king) { Chess::King.new 'black' }
+  let(:king2) { Chess::King.new 'white' }
   before(:each) do
-    board.add_piece rook, Coord.new(3,3)
-    board.add_piece rook2, Coord.new(3,5)
-    board.add_piece king, Coord.new(2,7)
-    board.add_piece king2, Coord.new(4,7)
+    board.add_piece rook, Chess::Coord.new(3,3)
+    board.add_piece rook2, Chess::Coord.new(3,5)
+    board.add_piece king, Chess::Coord.new(2,7)
+    board.add_piece king2, Chess::Coord.new(4,7)
   end
 
   describe "authorized_squares" do
@@ -35,17 +35,17 @@ describe 'rook' do
 
   describe "move_to" do
     it "should move the rook if the movement is legal" do
-      rook.move_to Coord.new 7,3
+      rook.move_to Chess::Coord.new 7,3
       rook.x.should == 7
       rook.y.should == 3
     end
     it "should not move the rook if the movement is not legal" do
-      rook.move_to Coord.new 7,4
+      rook.move_to Chess::Coord.new 7,4
       rook.x.should == 3
       rook.y.should == 3
     end
     it "should not move the rook if there is another piece of the same color" do
-      rook.move_to Coord.new 3,5
+      rook.move_to Chess::Coord.new 3,5
       rook.x.should == 3
       rook.y.should == 3
     end

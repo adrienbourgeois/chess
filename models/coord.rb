@@ -1,9 +1,11 @@
-class Coord
+module Chess
+  class Coord
 
-  attr_reader :x, :y
+    attr_reader :x, :y
 
-  def initialize x, y
-    @x, @y = x, y
+    def initialize x, y
+      @x, @y = x, y
+    end
+
   end
-
 end

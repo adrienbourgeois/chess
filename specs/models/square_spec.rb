@@ -5,7 +5,7 @@ require_relative '../../models/board.rb'
 
 describe 'square' do
 
-  subject(:square) { Square.new(Coord.new(0,0),nil) }
+  subject(:square) { Chess::Square.new(Chess::Coord.new(0,0),nil) }
 
   it { should respond_to(:piece) }
   it { should respond_to(:coord) }
@@ -17,13 +17,13 @@ describe 'square' do
     end
 
     it "should return 'white' when the square is occuped by a white piece" do
-      square.piece = Piece.new 'white'
+      square.piece = Chess::Piece.new 'white'
       square.occuped?.should == 'white'
     end
   end
 
   describe "add_piece" do
-    let(:piece) { Piece.new 'white' }
+    let(:piece) { Chess::Piece.new 'white' }
     it "should link the square to the piece" do
       square.add_piece piece
       square.piece.should == piece
@@ -33,11 +33,11 @@ describe 'square' do
 
   describe "in_check?" do
     it "should return true if the adversary can get there at the next round" do
-      board = Board.new true
+      board = Chess::Board.new true
       board.squares[7][5].in_check?.should == true
     end
     it "should return false if the adversary can't get there at the next round" do
-      board = Board.new true
+      board = Chess::Board.new true
       board.squares[4][3].in_check?.should == false
     end
   end

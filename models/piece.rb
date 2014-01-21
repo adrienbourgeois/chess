@@ -17,7 +17,8 @@ module Chess
     def my_turn?; board.next_player == color; end
 
     def move_to coord
-      return false if !(my_turn?)
+      return "Checkmate !!! #{board.previous_player} wins." if board.checkmate?
+      return "It's not the #{board.previous_player} turn" if !(my_turn?)
       square_target = board.squares[coord.x][coord.y]
       if self.authorized_squares.include? square_target
         return self.set_square square_target
@@ -28,7 +29,7 @@ module Chess
 
     #I made this method to stay DRY. Indeed, the authorized_squares method
     #is very similar for King, Queen, Bishop and Rook.
-    def authorized_squares_generic matrixes, distance_max, checkmate_check
+    def authorized_squares_generic matrixes, distance_max
       return [] if !self.alive?
       authorized_squares_array = []
       matrixes.each do |matrix|
@@ -38,7 +39,7 @@ module Chess
           if Chess::Board.in_board? cur_x, cur_y
             square_candidate = board.squares[cur_x][cur_y]
             if (occuped = square_candidate.occuped?)
-              if occuped == @color and !checkmate_check
+              if occuped == @color
                 break
               else
                 authorized_squares_array += [square_candidate]
@@ -55,9 +56,7 @@ module Chess
       return authorized_squares_array
     end
 
-    protected
-
-    def set_square(square_target)
+    def set_square(square_target, save=true)
       square_origin = @square
       piece_previous = square_target.piece
       square_target.add_piece self
@@ -66,7 +65,13 @@ module Chess
         square_target.add_piece piece_previous
         return "Your king is in check! You can't do this movement."
       else
-        board.change_next_player
+        if save
+          board.change_next_player
+          return "Checkmate !!! #{board.previous_player} wins." if board.checkmate?
+        else
+          square_origin.add_piece self
+          square_target.add_piece piece_previous
+        end
         return true
       end
     end

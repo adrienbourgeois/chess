@@ -8,7 +8,7 @@ module Chess
       return true if color == 'black' and cur_y == 4 and y == 6
     end
 
-    def authorized_squares(checkmate_check = false, king_check = false)
+    def authorized_squares
       color == 'white' ? k = 1 : k = -1
       authorized_squares = []
       [
@@ -37,7 +37,7 @@ module Chess
         if Chess::Board.in_board? cur_x,cur_y
           square_candidate = board.squares[cur_x][cur_y]
           if occuped = square_candidate.occuped?
-            if occuped == board.previous_player or checkmate_check
+            if occuped == board.previous_player
               authorized_squares += [square_candidate]
             end
           end

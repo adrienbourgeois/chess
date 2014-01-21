@@ -3,14 +3,14 @@ require_relative 'piece'
 module Chess
   class Bishop < Chess::Piece
 
-    def authorized_squares(checkmate_check = false, king_check = false)
+    def authorized_squares
       matrixes = [
         [1,1],
         [1,-1],
         [-1,1],
         [-1,-1]
       ]
-      authorized_squares_generic matrixes, 8, checkmate_check
+      authorized_squares_generic matrixes, 8
     end
 
     def symbol

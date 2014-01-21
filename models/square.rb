@@ -21,10 +21,11 @@ module Chess
       @piece.square = self if piece
     end
 
-    def in_check? checkmate_check = true
+    def in_check?
       squares_checked = []
       @board.pieces[@board.previous_player].select{ |piece| piece.square != nil }.each do |piece|
-        squares_checked += piece.authorized_squares(checkmate_check,true)
+        #squares_checked += piece.authorized_squares(checkmate_check,true)
+        squares_checked += piece.authorized_squares
       end
       return squares_checked.include? self
     end

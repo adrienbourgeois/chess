@@ -3,7 +3,7 @@ require_relative 'piece.rb'
 module Chess
   class Queen < Chess::Piece
 
-    def authorized_squares(checkmate_check = false, king_check = false)
+    def authorized_squares
       matrixes = [
         [1,-1],
         [1,0],
@@ -14,7 +14,7 @@ module Chess
         [-1,0],
         [-1,1]
       ]
-      authorized_squares_generic matrixes, 8, checkmate_check
+      authorized_squares_generic matrixes, 8
     end
 
     def symbol

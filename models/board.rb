@@ -71,15 +71,15 @@ module Chess
       @kings[@next_player].square.in_check?
     end
 
-    def checkmate?
-      if king_in_check?
-        square_poss = @kings[@next_player].authorized_squares
-        puts square_poss.count
-        if square_poss.count == 0
-          true
-        else
-          false
+    def checkmate? stalemate=false
+      if king_in_check? or stalemate
+        pieces[@next_player].each do |piece|
+          square_poss = piece.authorized_squares
+          square_poss.each do |square|
+            return false if @kings[@next_player].set_square(square,false) == true
+          end
         end
+        return true
       else
         false
       end
@@ -88,10 +88,10 @@ module Chess
     def stalemate?
       if !checkmate?
         square_poss = []
-        @pieces[@next_player].each do |piece|
+        @pieces[@next_player].select{ |piece| piece.class.to_s != 'Chess::King' }.each do |piece|
           square_poss += piece.authorized_squares
         end
-        if square_poss.count == 0
+        if square_poss.count == 0 and checkmate?(true)
           true
         else
           false

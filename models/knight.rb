@@ -3,7 +3,7 @@ require_relative 'piece.rb'
 module Chess
   class Knight < Chess::Piece
 
-    def authorized_squares(checkmate_check = false, king_check = false)
+    def authorized_squares
       x = @square.coord.x
       y = @square.coord.y
       board = @square.board
@@ -23,7 +23,7 @@ module Chess
         cur_y = candidate_coord[:y]
         if Chess::Board.in_board? cur_x, cur_y
           square_candidate = board.squares[cur_x][cur_y]
-          if square_candidate.occuped? != @color or checkmate_check
+          if square_candidate.occuped? != @color
             authorized_squares_array += [board.squares[cur_x][cur_y]]
           end
         end

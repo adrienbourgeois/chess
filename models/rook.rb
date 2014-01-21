@@ -4,14 +4,14 @@ require 'pry'
 module Chess
   class Rook < Chess::Piece
 
-    def authorized_squares(checkmate_check = false, king_check = false)
+    def authorized_squares
       matrixes = [
         [1,0],
         [0,1],
         [-1,0],
         [0,-1]
       ]
-      authorized_squares_generic matrixes, 8, checkmate_check
+      authorized_squares_generic matrixes, 8
     end
 
     def symbol

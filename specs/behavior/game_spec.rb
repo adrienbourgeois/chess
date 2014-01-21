@@ -12,10 +12,8 @@ describe 'game' do
   let(:rook) { Chess::Rook.new 'black' }
 
   it "should not move if it's not the turn of the player" do
-    board.print_schema
     pawn_black = board.squares[0][6].piece
     pawn_black.move_to Chess::Coord.new(0,4)
-    board.print_schema
     pawn_black.x.should == 0
     pawn_black.y.should == 6
   end
@@ -57,6 +55,7 @@ describe 'game' do
       board2.add_piece(king,Chess::Coord.new(4,0))
       board2.add_piece(queen,Chess::Coord.new(6,1))
       board2.add_piece(rook,Chess::Coord.new(3,7))
+      board2.print_schema
       board2.stalemate?.should == true
     end
     it "should return false when there is at least one piece that can do a legal movement" do

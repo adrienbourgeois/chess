@@ -73,10 +73,10 @@ module Chess
 
     def checkmate? stalemate=false
       if king_in_check? or stalemate
-        pieces[@next_player].each do |piece|
+        pieces[@next_player].select{ |piece| piece.square != nil }.each do |piece|
           square_poss = piece.authorized_squares
           square_poss.each do |square|
-            return false if @kings[@next_player].set_square(square,false) == true
+            return false if piece.set_square(square,false) == true
           end
         end
         return true
@@ -132,13 +132,15 @@ module Chess
     end
 
     def to_json
-      board_hash = { pieces: [] }
+      board_hash = { "pieces" => [], "dead_pieces_white" => [], "dead_pieces_black" => [] }
       @pieces.each do |color,pieces_tab|
         pieces_tab.each do |piece|
           if piece.square
             key = "#{piece.x}x#{piece.y}"
-            board_hash[:pieces] += [{ coord: key, symbol: piece.symbol }]
+            board_hash["pieces"] += [{ coord: key, symbol: piece.symbol }]
             #board_hash[key] = piece.symbol
+          else
+            board_hash["dead_pieces_#{color}"] += [piece.symbol]
           end
         end
       end

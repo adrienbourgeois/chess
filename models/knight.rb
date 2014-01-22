@@ -4,11 +4,7 @@ module Chess
   class Knight < Chess::Piece
 
     def authorized_squares
-      x = @square.coord.x
-      y = @square.coord.y
-      board = @square.board
       authorized_squares_array = []
-
       [
         {x:x+2, y:y+1},
         {x:x+2, y:y-1},

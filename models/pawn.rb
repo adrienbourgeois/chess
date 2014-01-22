@@ -36,10 +36,8 @@ module Chess
         cur_y = y+matrix[1]
         if Chess::Board.in_board? cur_x,cur_y
           square_candidate = board.squares[cur_x][cur_y]
-          if occuped = square_candidate.occuped?
-            if occuped == board.previous_player
-              authorized_squares += [square_candidate]
-            end
+          if occuped = square_candidate.occuped? and occuped != @color
+            authorized_squares += [square_candidate]
           end
         end
       end

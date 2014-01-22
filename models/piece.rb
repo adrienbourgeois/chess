@@ -68,12 +68,29 @@ module Chess
         if save
           board.change_next_player
           return "Checkmate !!! #{board.previous_player} wins." if board.checkmate?
+          self.promotion
         else
           square_origin.add_piece self
           square_target.add_piece piece_previous
         end
         return true
       end
+    end
+
+    def promotion
+      if self.class.to_s == "Chess::Pawn" and self.end_of_board?
+        queen = Queen.new @color
+        self.square.add_piece queen
+        true
+      else
+        false
+      end
+    end
+
+    def end_of_board?
+      return true if @color == 'white' and self.y == 7
+      return true if @color == 'black' and self.y == 0
+      false
     end
 
   end

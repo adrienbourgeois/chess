@@ -80,7 +80,7 @@ module Chess
     def promotion
       if self.class.to_s == "Chess::Pawn" and self.end_of_board?
         queen = Queen.new @color
-        self.square.add_piece queen
+        self.board.add_piece queen, self.square.coord
         true
       else
         false

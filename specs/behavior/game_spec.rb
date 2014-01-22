@@ -92,7 +92,9 @@ describe 'game' do
       board2.add_piece(pawn,Chess::Coord.new(2,5))
       board2.add_piece(pawn_white,Chess::Coord.new(4,6))
       square = board2.squares[4][7]
+      board2.print_schema
       pawn_white.move_to(Chess::Coord.new(4,7))
+      board2.print_schema
       square.piece.class.to_s.should == "Chess::Queen"
     end
   end
